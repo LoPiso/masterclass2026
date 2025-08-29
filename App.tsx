@@ -5,7 +5,51 @@ import { SYSTEM_INSTRUCTION } from './constants';
 import ChatMessage from './components/ChatMessage';
 import ChatInput from './components/ChatInput';
 
+const ApiKeySetup: React.FC<{ onApiKeySubmit: (key: string) => void; error: string | null }> = ({ onApiKeySubmit, error }) => {
+    const [apiKeyInput, setApiKeyInput] = useState('');
+
+    const handleSubmit = (e: React.FormEvent) => {
+        e.preventDefault();
+        if (apiKeyInput.trim()) {
+            onApiKeySubmit(apiKeyInput.trim());
+        }
+    };
+
+    return (
+        <div className="flex flex-col items-center justify-center h-full bg-gray-50 p-6">
+            <div className="w-full max-w-md text-center">
+                <h2 className="text-2xl font-bold text-gray-800 mb-2">Configurazione Assistente Virtuale</h2>
+                <p className="text-gray-600 mb-6">Per iniziare, inserisci la tua chiave API di Google AI Studio.</p>
+                <form onSubmit={handleSubmit} className="space-y-4">
+                    <input
+                        type="password"
+                        value={apiKeyInput}
+                        onChange={(e) => setApiKeyInput(e.target.value)}
+                        placeholder="Incolla la tua API Key qui"
+                        className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                        aria-label="API Key Input"
+                    />
+                     {error && <p className="text-red-500 text-sm">{error}</p>}
+                    <button
+                        type="submit"
+                        disabled={!apiKeyInput.trim()}
+                        className="w-full bg-blue-600 text-white rounded-lg py-2.5 font-semibold hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 disabled:bg-blue-300 transition-colors"
+                    >
+                        Avvia Chat
+                    </button>
+                </form>
+                <p className="text-xs text-gray-500 mt-4">
+                    La tua chiave API è salvata solo nel tuo browser e non viene condivisa.
+                </p>
+            </div>
+        </div>
+    );
+};
+
+
 const App: React.FC = () => {
+    const [apiKey, setApiKey] = useState<string | null>(null);
+    const [isInitialized, setIsInitialized] = useState<boolean>(false);
     const [messages, setMessages] = useState<Message[]>([
         {
             role: MessageRole.MODEL,
@@ -17,37 +61,44 @@ const App: React.FC = () => {
     const chatRef = useRef<Chat | null>(null);
     const messagesEndRef = useRef<HTMLDivElement>(null);
 
+    useEffect(() => {
+        const storedApiKey = localStorage.getItem('google-api-key');
+        if (storedApiKey) {
+            handleApiKeySubmit(storedApiKey);
+        }
+    }, []);
+
     const scrollToBottom = () => {
         messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
     };
 
     useEffect(() => {
-        scrollToBottom();
-    }, [messages]);
+        if (isInitialized) {
+            scrollToBottom();
+        }
+    }, [messages, isInitialized]);
 
-    useEffect(() => {
-        const initializeChat = () => {
-            try {
-                // FIX: Switched from `import.meta.env.VITE_API_KEY` to `process.env.API_KEY` to follow the coding guidelines and fix TypeScript errors.
-                const apiKey = process.env.API_KEY;
-                if (!apiKey) {
-                    throw new Error("La chiave API non è stata trovata. Assicurati di aver impostato la variabile d'ambiente API_KEY.");
-                }
-                const ai = new GoogleGenAI({ apiKey: apiKey });
-                const chat = ai.chats.create({
-                    model: 'gemini-2.5-flash',
-                    config: {
-                        systemInstruction: SYSTEM_INSTRUCTION,
-                    },
-                });
-                chatRef.current = chat;
-            } catch (e) {
-                const error = e as Error;
-                setError(error.message);
-                console.error("Initialization error:", error);
-            }
-        };
-        initializeChat();
+    const handleApiKeySubmit = useCallback(async (key: string) => {
+        setError(null);
+        try {
+            const ai = new GoogleGenAI({ apiKey: key });
+            // Test the key with a simple request to ensure it's valid
+            await ai.models.generateContent({ model: 'gemini-2.5-flash', contents: 'test' });
+
+            const chat = ai.chats.create({
+                model: 'gemini-2.5-flash',
+                config: { systemInstruction: SYSTEM_INSTRUCTION },
+            });
+            chatRef.current = chat;
+            
+            localStorage.setItem('google-api-key', key);
+            setApiKey(key);
+            setIsInitialized(true);
+        } catch (e) {
+            console.error("Initialization error:", e);
+            setError("La chiave API non è valida o si è verificato un errore. Riprova.");
+            localStorage.removeItem('google-api-key');
+        }
     }, []);
 
     const handleSendMessage = useCallback(async (userInput: string) => {
@@ -58,7 +109,6 @@ const App: React.FC = () => {
         setIsLoading(true);
         setError(null);
         
-        // Add a placeholder for the model's response
         setMessages(prev => [...prev, { role: MessageRole.MODEL, content: "" }]);
 
         try {
@@ -96,6 +146,14 @@ const App: React.FC = () => {
             setIsLoading(false);
         }
     }, [isLoading]);
+
+    if (!isInitialized) {
+        return (
+             <div className="flex flex-col h-screen max-w-3xl mx-auto bg-white shadow-2xl rounded-lg my-4 font-sans">
+                <ApiKeySetup onApiKeySubmit={handleApiKeySubmit} error={error} />
+            </div>
+        );
+    }
 
     return (
         <div className="flex flex-col h-screen max-w-3xl mx-auto bg-white shadow-2xl rounded-lg my-4 font-sans">
