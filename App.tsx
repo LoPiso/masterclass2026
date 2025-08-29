@@ -29,10 +29,12 @@ const App: React.FC = () => {
     useEffect(() => {
         const initializeChat = () => {
             try {
-                if (!import.meta.env.API_KEY) {
-                    throw new Error("API_KEY non trovata. Assicurati che sia impostata nelle variabili d'ambiente.");
+                // FIX: As per the guidelines, use process.env.API_KEY to get the API key. This resolves the TypeScript error with 'import.meta.env'.
+                const apiKey = process.env.API_KEY;
+                if (!apiKey) {
+                    throw new Error("API_KEY non trovata. Assicurati che API_KEY sia impostata nelle variabili d'ambiente.");
                 }
-                const ai = new GoogleGenAI({ apiKey: import.meta.env.API_KEY });
+                const ai = new GoogleGenAI({ apiKey: apiKey });
                 const chat = ai.chats.create({
                     model: 'gemini-2.5-flash',
                     config: {
