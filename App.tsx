@@ -29,10 +29,10 @@ const App: React.FC = () => {
     useEffect(() => {
         const initializeChat = () => {
             try {
-                if (!process.env.API_KEY) {
+                if (!import.meta.env.API_KEY) {
                     throw new Error("API_KEY non trovata. Assicurati che sia impostata nelle variabili d'ambiente.");
                 }
-                const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
+                const ai = new GoogleGenAI({ apiKey: import.meta.env.API_KEY });
                 const chat = ai.chats.create({
                     model: 'gemini-2.5-flash',
                     config: {
