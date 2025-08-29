@@ -1,0 +1,5 @@
+{
+  "name": "Chatbot Bando Camera di Commercio",
+  "description": "Un chatbot intelligente per rispondere a domande sui bandi della Camera di Commercio, basato su un documento di riferimento specifico.",
+  "requestFramePermissions": []
+}
