@@ -1,4 +1,5 @@
-export const BANDO_TEXT = `
+
+export const CONTESTO_TEXT = `
 CONTESTO E MOTIVAZIONI DEL BANDO
 
 Verso l’AI definitiva
@@ -37,60 +38,4 @@ E’ questione di tempo prima che l’AI fisica impari a cucire un abito su misu
 Mentre la commodizzazione del software ha vissuto una lunga parabola dal primo computer di Turing a chatGPT, per la robotica il salto sarà drastico: i leader dell’industria assicurano che nel giro di mesi, non anni, i robot compariranno nella nostra quotidianità, dalle macchine a guida autonoma, ai camerieri, a cuochi, agli idraulici. L’artigianato smetterà di essere una prerogativa dell’uomo, e il concetto stesso di “fatto a mano” verrà ridefinito. Nel giro di pochi anni l’impresa dovrà dotarsi di questa tecnologia, pena la riduzione delle quote di mercato a una nicchia di collezionisti, ma al contempo potrebbe cogliere una storica finestra di opportunità: la trasformazione del proprio mestiere in una proprietà intellettuale. Chi mai comprerebbe il brevetto di quel particolare tortellino ripieno, quando ci vuole una vita a imparare l’arte e basta un buco nel passaggio generazionale per perdere per sempre il know-how? Ebbene, l’AI fisica promette di imparare una volta per tutte il segreto del tortellino ripieno e di conservarlo per sempre tramandandolo non solo verticalmente alle future generazioni di robot, ma anche orizzontalmente a illimitati cloni ugualmente, perfettamente produttivi. La ricetta segreta diventa improvvisamente un asset per servire un mercato illimitato, proprio come la molecola di un farmaco. 
 
 Sarà il rito di passaggio dell’arte plastica, iniziata col mito di Efesto che forgia lo scudo di Achille, all’era della sua riproducibilità tecnica: come ci ha già insegnato Walter Benjamin per l’arte visiva troveremo altre strade, svilupperemo altri mercati. Si perderà parte dell’aura che oggi ancora avvolge il manufatto, ma i più audaci guadagneranno immense fortune monetizzando la propria tradizione milionaria con Ikea e Ferrero, oppure diventando la nuova Ikea e la nuova Ferrero: inizieranno con il noleggiare costosissimi robot in Saas, difendendo in tribunale la proprietà sui loro dati di addestramento contro le big tech, per poi passare all’acquisto e infine allo sviluppo di robot proprietari, super artigiani del made in italy. Fonderanno fast food multinazionali che serviranno piatti della migliore tradizione a marginalità molto più bassa della trattoria ma con volumi miliardari, e così nella moda e nel mobile. Guideranno un nuovo boom economico al grido di “grande è bello!”, inventando nuove catene del valore e riconfigurando il tessuto sociale. Oppure si estingueranno, lasciando le proprie officine all’archeologia industriale di quando gli antichi “ancora facevano le cose belle a mano”.
-
----
-
-DOCUMENTO UFFICIALE: BANDO INNOVAZIONE DIGITALE 2024 - CAMERA DI COMMERCIO
-
-Art. 1 - Finalità del bando
-Il presente bando ha lo scopo di promuovere la digitalizzazione delle micro, piccole e medie imprese (MPMI) di tutti i settori economici attraverso l'erogazione di contributi a fondo perduto per l'acquisto di servizi di consulenza, formazione e tecnologie digitali. L'obiettivo è accelerare la transizione digitale e migliorare la competitività delle imprese sul mercato globale.
-
-Art. 2 - Soggetti beneficiari
-Possono presentare domanda le MPMI che, alla data di presentazione della domanda, possiedono i seguenti requisiti:
-a) Avere sede legale e/o unità operativa nella circoscrizione territoriale della Camera di Commercio.
-b) Essere attive e regolarmente iscritte al Registro delle Imprese.
-c) Essere in regola con il pagamento del diritto annuale camerale.
-d) Non essere in stato di liquidazione, fallimento, concordato preventivo o altre procedure concorsuali.
-e) Essere in regola con gli obblighi contributivi (DURC regolare).
-Sono escluse le imprese operanti nel settore della pesca e dell'acquacoltura e nel settore della produzione primaria di prodotti agricoli.
-
-Art. 3 - Spese ammissibili
-Sono considerate ammissibili le spese, al netto dell'IVA, sostenute a partire dal 1° gennaio 2024 e fino alla data di presentazione della domanda, relative a:
-1.  Servizi di consulenza e/o formazione finalizzati all'introduzione di tecnologie digitali tra quelle elencate nel successivo punto 2. La consulenza non può superare il 30% del totale del progetto.
-2.  Acquisto di beni e servizi strumentali, inclusi dispositivi e software, funzionali all'acquisizione delle seguenti tecnologie:
-    a) robotica avanzata e collaborativa;
-    b) manifattura additiva e stampa 3D;
-    c) prototipazione rapida;
-    d) soluzioni per la cybersicurezza e business continuity;
-    e) big data e analytics;
-    f) intelligenza artificiale;
-    g) soluzioni tecnologiche per la navigazione immersiva, interattiva e partecipativa (realtà aumentata, realtà virtuale e ricostruzioni 3D);
-    h) sistemi di e-commerce e soluzioni digitali per il marketing.
-
-Non sono ammissibili spese per smartphone, tablet, computer portatili o PC standard non dedicati esclusivamente al progetto di digitalizzazione. Il canone di abbonamento a software è ammissibile solo per il primo anno.
-
-Art. 4 - Entità del contributo
-Il contributo è concesso a fondo perduto nella misura del 50% delle spese ammissibili.
-- L'investimento minimo richiesto è di 4.000,00 Euro.
-- L'importo massimo del contributo è di 10.000,00 Euro.
-Alle imprese in possesso del rating di legalità verrà riconosciuta una premialità di 250,00 Euro.
-
-Art. 5 - Modalità e termini di presentazione della domanda
-Le domande di contributo devono essere presentate esclusivamente in via telematica, tramite la piattaforma dedicata accessibile dal sito della Camera di Commercio.
-La finestra per la presentazione delle domande si apre il 15 settembre 2024 alle ore 9:00 e si chiude il 30 ottobre 2024 alle ore 17:00, salvo esaurimento anticipato dei fondi.
-Le domande saranno valutate secondo l'ordine cronologico di presentazione (procedura "a sportello").
-È richiesta la firma digitale del legale rappresentante dell'impresa.
-`;
-
-export const SYSTEM_INSTRUCTION = `
-Sei un assistente virtuale esperto e preciso, specializzato nel fornire informazioni sul "BANDO INNOVAZIONE DIGITALE 2024" della Camera di Commercio.
-Il tuo unico scopo è rispondere alle domande degli utenti basandoti ESCLUSIVAMENTE sul contenuto del documento del bando fornito di seguito.
-NON devi inventare informazioni, fare supposizioni o usare conoscenze esterne al documento.
-Se una domanda riguarda un'informazione non presente nel testo, devi rispondere in modo cortese che l'informazione non è disponibile nel documento a tua disposizione.
-Rispondi in modo chiaro, conciso e professionale. Usa l'italiano.
-
-Ecco il testo del bando:
----
-${BANDO_TEXT}
----
 `;

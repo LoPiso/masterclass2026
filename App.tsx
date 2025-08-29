@@ -1,7 +1,8 @@
+
 import React, { useState, useRef, useEffect, useCallback } from 'react';
 import { GoogleGenAI, Chat } from "@google/genai";
 import { Message, MessageRole } from './types';
-import { SYSTEM_INSTRUCTION } from './constants';
+import { SYSTEM_INSTRUCTION } from './personalita';
 import ChatMessage from './components/ChatMessage';
 import ChatInput from './components/ChatInput';
 
