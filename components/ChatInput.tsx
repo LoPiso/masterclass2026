@@ -32,12 +32,12 @@ const ChatInput: React.FC<ChatInputProps> = ({ onSendMessage, isLoading }) => {
                 onChange={(e) => setInput(e.target.value)}
                 placeholder="Scrivi la tua domanda qui..."
                 disabled={isLoading}
-                className="flex-1 px-4 py-2 border border-gray-300 rounded-full focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200 disabled:bg-gray-100"
+                className="flex-1 px-4 py-2 border border-gray-300 rounded-full focus:outline-none focus:ring-2 focus:ring-[#0096D8] transition duration-200 disabled:bg-gray-100"
             />
             <button
                 type="submit"
                 disabled={isLoading || !input.trim()}
-                className="bg-blue-600 text-white rounded-full p-3 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 disabled:bg-blue-300 disabled:cursor-not-allowed transition-colors duration-200"
+                className="bg-[#0096D8] text-white rounded-full p-3 hover:bg-[#007bb5] focus:outline-none focus:ring-2 focus:ring-[#0096D8] focus:ring-offset-2 disabled:bg-[#99d5ed] disabled:cursor-not-allowed transition-colors duration-200"
                 aria-label="Invia messaggio"
             >
                 <SendIcon className="w-5 h-5" />

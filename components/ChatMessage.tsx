@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Message, MessageRole } from '../types';
 import BotIcon from './icons/BotIcon';
@@ -13,7 +12,7 @@ const ChatMessage: React.FC<ChatMessageProps> = ({ message }) => {
 
     const containerClasses = isUser ? 'flex justify-end' : 'flex justify-start';
     const bubbleClasses = isUser
-        ? 'bg-blue-600 text-white rounded-br-none'
+        ? 'bg-[#0096D8] text-white rounded-br-none'
         : 'bg-gray-200 text-gray-800 rounded-bl-none';
 
     return (
