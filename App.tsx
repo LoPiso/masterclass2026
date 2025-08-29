@@ -1,4 +1,3 @@
-
 import React, { useState, useRef, useEffect, useCallback } from 'react';
 import { GoogleGenAI, Chat } from "@google/genai";
 import { Message, MessageRole } from './types';
@@ -29,10 +28,10 @@ const App: React.FC = () => {
     useEffect(() => {
         const initializeChat = () => {
             try {
-                // FIX: As per the guidelines, use process.env.API_KEY to get the API key. This resolves the TypeScript error with 'import.meta.env'.
+                // FIX: Switched from `import.meta.env.VITE_API_KEY` to `process.env.API_KEY` to follow the coding guidelines and fix TypeScript errors.
                 const apiKey = process.env.API_KEY;
                 if (!apiKey) {
-                    throw new Error("API_KEY non trovata. Assicurati che API_KEY sia impostata nelle variabili d'ambiente.");
+                    throw new Error("La chiave API non è stata trovata. Assicurati di aver impostato la variabile d'ambiente API_KEY.");
                 }
                 const ai = new GoogleGenAI({ apiKey: apiKey });
                 const chat = ai.chats.create({
