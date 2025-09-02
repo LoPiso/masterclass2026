@@ -1,7 +1,4 @@
-// src/components/ChatMessage.tsx
-
 import React from 'react';
-import ReactMarkdown from 'react-markdown'; // 1. Importa ReactMarkdown
 import { Message, MessageRole } from '../types';
 import BotIcon from './icons/BotIcon';
 import UserIcon from './icons/UserIcon';
@@ -26,16 +23,10 @@ const ChatMessage: React.FC<ChatMessageProps> = ({ message }) => {
                 </div>
             )}
             <div
-                // 2. Abbiamo rimosso lo stile 'white-space' perché ReactMarkdown lo gestisce.
                 className={`p-3 rounded-xl break-words ${bubbleClasses}`}
+                style={{ whiteSpace: 'pre-wrap' }}
             >
-                {/* 3. Qui sta la modifica principale: */}
-                {/* Usiamo ReactMarkdown per interpretare il testo e le classi "prose" per lo stile. */}
-                <div className="prose prose-sm max-w-none prose-p:my-0 prose-ul:my-2 prose-ol:my-2 text-inherit">
-                    <ReactMarkdown>
-                        {message.content}
-                    </ReactMarkdown>
-                </div>
+                {message.content}
             </div>
             {isUser && (
                 <div className="flex-shrink-0 w-8 h-8 bg-gray-200 rounded-full flex items-center justify-center">
