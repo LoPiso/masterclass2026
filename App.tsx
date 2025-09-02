@@ -67,7 +67,7 @@ const App: React.FC = () => {
 
     const initialSuggestions = [
         "A quali imprese si rivolge?",
-        "Quali servizi comprende?",
+        "Quali servizi offre?",
         "A cosa mi serve?",
         "Che impegno mi richiede?"
     ];
